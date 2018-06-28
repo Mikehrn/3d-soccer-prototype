@@ -12,7 +12,7 @@ export default class Formation {
   }
 
   setupButtons(that) {    
-    this.$button = document.querySelectorAll('.formation-list__option');
+    this.$button = document.querySelectorAll('.formation__option');
     for (var i = 0; i < this.$button.length; i++) {
       this.$button[i].onclick = function() {
         that.setFormation(this.dataset.formation, this);
@@ -21,7 +21,7 @@ export default class Formation {
   }
 
   setFormation(index, own) {
-    Util.resetClass('formation-list__option');
+    Util.resetClass('formation__option');
     this.currentFormation = index;
     this.manager.setState(STATE.CHANGED_FORMATION);
     own.classList.add('active');

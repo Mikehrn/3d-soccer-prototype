@@ -8,7 +8,7 @@ export default class Model {
   constructor(manager) {
     this.manager = manager;
     this.currentSceneIndex = 0;
-    // this.currentFormationIndex = 0;
+    this.currentFormationIndex = 0;
     // this.currentDesignIndex = 0;
     // this.currentTeamIndex = 0;
     this.setupButtons(this);
@@ -29,13 +29,13 @@ export default class Model {
     }
   }
 
-  // set currentFormation(index) {
-  //   this.currentFormationIndex = index;
-  // }
+  set currentFormation(index) {
+    this.currentFormationIndex = index;
+  }
 
-  // get currentFormation() {
-  //   return this.currentFormationIndex;
-  // }
+  get currentFormation() {
+    return this.currentFormationIndex;
+  }
 
   set currentScene(index) {
     this.currentSceneIndex = index;

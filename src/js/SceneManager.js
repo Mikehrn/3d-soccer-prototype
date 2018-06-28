@@ -14,14 +14,14 @@ import SceneGalaxy from './scenes/SceneGalaxy';
 import SceneStadium from './scenes/SceneStadium';
 
 export default class SceneManager {
-  constructor(manager) {
-    this.currentSceneIndex = 0;
-    this.currentFormationIndex = 0;
-    this.manager = manager;
-    this.sceneToRender;
+  constructor() {
   }
 
-  init() {
+  init(manager, formationIndex, sceneIndex) {
+    this.currentSceneIndex = sceneIndex;
+    this.currentFormationIndex = formationIndex;
+    this.manager = manager;
+    this.sceneToRender;
     this.setUp();
     this.initRenderer();
   }
@@ -51,11 +51,20 @@ export default class SceneManager {
       this.playerList[i].xAxis = FormationConstants[this.currentFormationIndex][i][0];
       this.playerList[i].zAxis = FormationConstants[this.currentFormationIndex][i][1];
       this.playerList[i].position = FormationConstants[this.currentFormationIndex][i][2];
-      this.playerList[i].draw();
-      this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
       this.playerList[i].name = NameConstants[0][i];
       this.playerList[i].index = i;
+      this.playerList[i].draw();
+      this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
       this.sceneStreet.scene.add(this.playerList[i].model);
+    }
+  }
+
+  setFormation(index) {
+    for (let i = 0; i <= 10; i++) {
+      this.playerList[i].xAxis = FormationConstants[index][i][0];
+      this.playerList[i].zAxis = FormationConstants[index][i][1];
+      this.playerList[i].position = FormationConstants[index][i][2];
+      this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
     }
   }
 

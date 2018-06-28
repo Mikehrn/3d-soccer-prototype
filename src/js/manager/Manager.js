@@ -16,16 +16,18 @@ export default class Manager {
   initStates() {
     this.states = {
       loaded: () => {
-        this.sceneManager.init();
-        // this.formation = new Formation(this);
+        // this.sceneManager.init();
+        this.formation = new Formation(this);
         // this.canvas = new Scene();
-        // this.canvas.init(this, this.model.currentFormation ,this.model.currentDesign);
+        // console.log(this.model.currentFormation);
+        // console.log(this.model.currentDesign);
+        this.sceneManager.init(this, this.model.currentFormation ,this.model.currentScene);
       },
-    //   formation: () => {
-    //     let newFormationIndex = this.formation.currentFormation;
-    //     this.model.currentFormation = newFormationIndex;
-    //     this.canvas.setFormation(newFormationIndex);
-    //   },
+      formation: () => {
+        let newFormationIndex = this.formation.currentFormation;
+        this.model.currentFormation = newFormationIndex;
+        this.sceneManager.setFormation(newFormationIndex);
+      },
       changedScene: () => {
         // this.loader.loadScene(this.model.currentScene);
         //this.sceneManager.setSceneIndex(this.model.currentScene);
@@ -50,7 +52,7 @@ export default class Manager {
 
   init() {
     this.model = new Model(this);
-    this.sceneManager = new SceneManager(this);
+    this.sceneManager = new SceneManager();
     this.loader = new Loader(this);
     // this.ui = new Ui(this);
   }

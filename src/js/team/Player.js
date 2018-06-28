@@ -5,6 +5,7 @@ import * as Designlist from './../constants/DesignConstants';
 import Model from './../Model';
 import {IMG as IMG} from './../Loader';
 import {OBJECT_GENERAL as OBJECT_GENERAL} from './../Loader';
+import * as TWEEN from '@tweenjs/tween.js';
 
 export default class Player {
   constructor() {
@@ -16,20 +17,14 @@ export default class Player {
     this.model.position.set(x, 6, z);
   }
 
-  updatePosition() {
-
-  }
-
   draw() {
     this.setUniform();
     this.model = this.uniform;
-    // this.model.traverse(function(node) {
-    //   if (node instanceof THREE.Mesh) {
-    //     node.castShadow = true;
-    //   }
-    // });
     this.model.scale.set(0.12, 0.12, 0.12);
     this.model.rotation.set(0, 10.9, 0);
+    this.tweenY = new TWEEN.Tween(this.model.position).to({y: 10}, 1000).start();
+    this.tweenY.repeat(Infinity); 
+    this.tweenY.yoyo(true);
   }
 
   // setDesign(index) {
