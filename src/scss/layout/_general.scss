@@ -14,7 +14,7 @@ a {
   text-decoration: none;
 }
 
-.formation-1, .formation-2, .formation-3, .scene__option {
+.formation__option, .scene__option {
   background-color: $white;
   padding: 15px 20px;
   position: absolute;
@@ -31,17 +31,17 @@ a {
   }
 }
 
-.formation-1 {
+#formation1 {
   bottom: 20px; 
   left: 20px;
 }
 
-.formation-2 {
+#formation2 {
   bottom: 20px; 
   left: 165px;
 }
 
-.formation-3 {
+#formation3 {
   bottom: 20px; 
   left: 310px;
 }

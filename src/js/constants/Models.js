@@ -3,7 +3,8 @@
 export const PATH = 'assets/model/';
 
 export const GENERAL = {
-  SHIRT: 'general/shirt/shirt.gltf',
+  SHIRT_KEEPER: 'general/shirt-keeper/shirt.gltf',
+  SHIRT_PLAYER: 'general/shirt-player/shirt.gltf'
 }
 
 export const STREET = {

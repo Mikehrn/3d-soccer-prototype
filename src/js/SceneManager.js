@@ -48,14 +48,14 @@ export default class SceneManager {
     this.playerList = [];
     for (let i = 0; i <= 10; i++) {
       this.playerList.push(new Player());
+      this.playerList[i].xAxis = FormationConstants[this.currentFormationIndex][i][0];
+      this.playerList[i].zAxis = FormationConstants[this.currentFormationIndex][i][1];
+      this.playerList[i].position = FormationConstants[this.currentFormationIndex][i][2];
+      this.playerList[i].draw();
+      this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
       this.playerList[i].name = NameConstants[0][i];
       this.playerList[i].index = i;
-      this.playerList[i].xAxis = FormationConstants[this.currentFormationIndex][i][0];
-      this.playerList[i].yAxis = FormationConstants[this.currentFormationIndex][i][1];
-      this.playerList[i].position = FormationConstants[this.currentFormationIndex][i][2];
       this.sceneStreet.scene.add(this.playerList[i].model);
-      // this.sceneGalaxy.scene.add(this.playerList[i].model);
-      // this.sceneStadium.scene.add(this.playerList[i].model);
     }
   }
 

@@ -47466,14 +47466,14 @@ var SceneManager = function () {
       this.playerList = [];
       for (var i = 0; i <= 10; i++) {
         this.playerList.push(new _Player2.default());
+        this.playerList[i].xAxis = _FormationConstants2.default[this.currentFormationIndex][i][0];
+        this.playerList[i].zAxis = _FormationConstants2.default[this.currentFormationIndex][i][1];
+        this.playerList[i].position = _FormationConstants2.default[this.currentFormationIndex][i][2];
+        this.playerList[i].draw();
+        this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
         this.playerList[i].name = _NameConstants2.default[0][i];
         this.playerList[i].index = i;
-        this.playerList[i].xAxis = _FormationConstants2.default[this.currentFormationIndex][i][0];
-        this.playerList[i].yAxis = _FormationConstants2.default[this.currentFormationIndex][i][1];
-        this.playerList[i].position = _FormationConstants2.default[this.currentFormationIndex][i][2];
         this.sceneStreet.scene.add(this.playerList[i].model);
-        // this.sceneGalaxy.scene.add(this.playerList[i].model);
-        // this.sceneStadium.scene.add(this.playerList[i].model);
       }
     }
   }, {
@@ -47725,47 +47725,53 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Player = function () {
   function Player() {
     _classCallCheck(this, Player);
-
-    this.model = _Loader.OBJECT_GENERAL.SHIRT;
-    // this.model.traverse(function(node) {
-    //   if (node instanceof THREE.Mesh) {
-    //     node.castShadow = true;
-    //   }
-    // });
-    this.model.scale.set(0.12, 0.12, 0.12);
-    this.model.rotation.set(0, 10.9, 0);
   }
 
   _createClass(Player, [{
-    key: 'setup',
-    value: function setup() {}
+    key: 'setPosition',
+    value: function setPosition(x, z) {
+      this.model.position.set(x, 6, z);
+    }
   }, {
     key: 'updatePosition',
     value: function updatePosition() {}
   }, {
     key: 'draw',
-    value: function draw() {}
+    value: function draw() {
+      this.setUniform();
+      this.model = this.uniform;
+      // this.model.traverse(function(node) {
+      //   if (node instanceof THREE.Mesh) {
+      //     node.castShadow = true;
+      //   }
+      // });
+      this.model.scale.set(0.12, 0.12, 0.12);
+      this.model.rotation.set(0, 10.9, 0);
+    }
 
     // setDesign(index) {
     //   this.currentDesignIndex = index;
     // }
 
   }, {
-    key: 'getUniform',
-    value: function getUniform(position) {
-      // if (this.position === PositionConstants.GK) {
-      //   switch(this.design) {
-      //     case 0: return IMG.K01; break; 
-      //     case 1: return IMG.K02; break; 
-      //     case 2: return IMG.K03; break; 
-      //   }
-      // } else {
-      //   switch(this.design) {
-      //     case 0: return IMG.P01; break; 
-      //     case 1: return IMG.P02; break; 
-      //     case 2: return IMG.P03; break; 
-      //   }
-      // }
+    key: 'setUniform',
+    value: function setUniform() {
+      console.log(this.position);
+      if (this.position === PositionConstants.GK) {
+        // switch(this.design) {
+        //   case 0: return IMG.K01; break; 
+        //   case 1: return IMG.K02; break; 
+        //   case 2: return IMG.K03; break; 
+        // }
+        this.uniform = _Loader.OBJECT_GENERAL.SHIRT_KEEPER.clone();
+      } else {
+        // switch(this.design) {
+        //   case 0: return IMG.P01; break; 
+        //   case 1: return IMG.P02; break; 
+        //   case 2: return IMG.P03; break; 
+        // }
+        this.uniform = _Loader.OBJECT_GENERAL.SHIRT_PLAYER.clone();
+      }
     }
   }]);
 
@@ -47821,7 +47827,8 @@ Object.defineProperty(exports, "__esModule", {
 var PATH = exports.PATH = 'assets/model/';
 
 var GENERAL = exports.GENERAL = {
-  SHIRT: 'general/shirt/shirt.gltf'
+  SHIRT_KEEPER: 'general/shirt-keeper/shirt.gltf',
+  SHIRT_PLAYER: 'general/shirt-player/shirt.gltf'
 };
 
 var STREET = exports.STREET = {
@@ -51027,7 +51034,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 exports.default = [
 // 4-3-3
-[[50, 250, PositionConstants.GK], [270, 40, PositionConstants.DF], [270, 185, PositionConstants.DF], [270, 325, PositionConstants.DF], [270, 470, PositionConstants.DF], [500, 250, PositionConstants.MF], [720, 140, PositionConstants.MF], [720, 380, PositionConstants.MF], [950, 40, PositionConstants.FW], [950, 250, PositionConstants.FW], [950, 470, PositionConstants.FW]],
+[[90, 0, PositionConstants.GK], [30, 40, PositionConstants.DF], [60, 12, PositionConstants.DF], [60, -12, PositionConstants.DF], [30, -40, PositionConstants.DF], [-30, 40, PositionConstants.MF], [0, 12, PositionConstants.MF], [0, -12, PositionConstants.MF], [-30, -40, PositionConstants.FW], [-60, 12, PositionConstants.FW], [-60, -12, PositionConstants.FW]],
 // 4-4-2
 [[50, 250, PositionConstants.GK], [270, 40, PositionConstants.DF], [270, 185, PositionConstants.DF], [270, 325, PositionConstants.DF], [270, 470, PositionConstants.DF], [500, 185, PositionConstants.MF], [500, 325, PositionConstants.MF], [720, 40, PositionConstants.MF], [720, 470, PositionConstants.MF], [950, 185, PositionConstants.FW], [950, 325, PositionConstants.FW]],
 // 3-4-3

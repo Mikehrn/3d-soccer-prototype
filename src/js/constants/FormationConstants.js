@@ -5,17 +5,17 @@ import * as PositionConstants from "./PositionConstants";
 export default [
   // 4-3-3
   [
-    [50, 250, PositionConstants.GK],
-    [270, 40, PositionConstants.DF],
-    [270, 185, PositionConstants.DF],
-    [270, 325, PositionConstants.DF],
-    [270, 470, PositionConstants.DF],
-    [500, 250, PositionConstants.MF],
-    [720, 140, PositionConstants.MF],
-    [720, 380, PositionConstants.MF],
-    [950, 40, PositionConstants.FW],
-    [950, 250, PositionConstants.FW],
-    [950, 470, PositionConstants.FW]
+    [90, 0, PositionConstants.GK],
+    [30, 40, PositionConstants.DF],
+    [60, 12, PositionConstants.DF],
+    [60, -12, PositionConstants.DF],
+    [30, -40, PositionConstants.DF],
+    [-30, 40, PositionConstants.MF],
+    [0, 12, PositionConstants.MF],
+    [0, -12, PositionConstants.MF],
+    [-30, -40, PositionConstants.FW],
+    [-60, 12, PositionConstants.FW],
+    [-60, -12, PositionConstants.FW]
   ],
   // 4-4-2
   [
