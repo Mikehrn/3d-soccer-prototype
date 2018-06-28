@@ -47653,6 +47653,7 @@ var Manager = function () {
       this.states = {
         loaded: function loaded() {
           // this.sceneManager.init();
+          _this.ui.loaded();
           _this.formation = new _Formation2.default(_this);
           // this.canvas = new Scene();
           // console.log(this.model.currentFormation);
@@ -47691,7 +47692,7 @@ var Manager = function () {
       this.model = new _Model2.default(this);
       this.sceneManager = new _SceneManager2.default();
       this.loader = new _Loader2.default(this);
-      // this.ui = new Ui(this);
+      this.ui = new _UiControls2.default(this);
     }
   }, {
     key: 'setState',
@@ -52540,6 +52541,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _Util = __webpack_require__(4);
 
 var _Util2 = _interopRequireDefault(_Util);
@@ -52559,9 +52562,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // UI controls for controlling tabs and other non-game related UI elements
-var Ui = function Ui() {
-  _classCallCheck(this, Ui);
-};
+var Ui = function () {
+  function Ui(manager) {
+    _classCallCheck(this, Ui);
+
+    this.manager = manager;
+  }
+
+  _createClass(Ui, [{
+    key: 'loaded',
+    value: function loaded() {
+      var LOADER_DIV = document.getElementById('loader');
+      LOADER_DIV.classList.add('loaded');
+    }
+  }]);
+
+  return Ui;
+}();
 
 exports.default = Ui;
 

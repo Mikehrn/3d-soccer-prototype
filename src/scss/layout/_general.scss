@@ -61,3 +61,40 @@ a {
   bottom: 80px; 
   left: 310px;
 }
+
+.loader {
+  transition: 0.5s linear;
+
+  background-image: url('../img/loading-background.jpg');
+  background-position: center;
+  background-size: cover;
+  visibility: visible;
+  position: fixed;
+  z-index: 20000;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+
+  img {
+    animation: spin 12s linear infinite;
+    width: 120px;
+    height: 120px;
+  }
+
+  p {
+    font-size: rem-calc(26px);
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: $white;
+  }
+}
+
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes spin { 100% { transform:rotate(360deg); } }

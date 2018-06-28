@@ -17,6 +17,7 @@ export default class Manager {
     this.states = {
       loaded: () => {
         // this.sceneManager.init();
+        this.ui.loaded();
         this.formation = new Formation(this);
         // this.canvas = new Scene();
         // console.log(this.model.currentFormation);
@@ -54,7 +55,7 @@ export default class Manager {
     this.model = new Model(this);
     this.sceneManager = new SceneManager();
     this.loader = new Loader(this);
-    // this.ui = new Ui(this);
+    this.ui = new Ui(this);
   }
 
   setState(stateName) {
