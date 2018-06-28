@@ -12,6 +12,7 @@ let OrbitControls = require('three-orbit-controls')(THREE);
 import * as THREE from 'three';
 import SceneGalaxy from './scenes/SceneGalaxy';
 import SceneStadium from './scenes/SceneStadium';
+import TWEEN from '@tweenjs/tween.js';
 
 export default class SceneManager {
   constructor() {
@@ -64,7 +65,7 @@ export default class SceneManager {
       this.playerList[i].xAxis = FormationConstants[index][i][0];
       this.playerList[i].zAxis = FormationConstants[index][i][1];
       this.playerList[i].position = FormationConstants[index][i][2];
-      this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
+      this.playerList[i].updatePosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
     }
   }
 
@@ -83,6 +84,7 @@ export default class SceneManager {
 
   renderLoop() {
     this.renderer.render(this.sceneToRender, this.camera);
+    TWEEN.update();
     requestAnimationFrame(() => { 
       this.renderLoop();
     });

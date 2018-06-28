@@ -5,16 +5,20 @@ import * as Designlist from './../constants/DesignConstants';
 import Model from './../Model';
 import {IMG as IMG} from './../Loader';
 import {OBJECT_GENERAL as OBJECT_GENERAL} from './../Loader';
-import * as TWEEN from '@tweenjs/tween.js';
+import TWEEN from '@tweenjs/tween.js';
 
 export default class Player {
   constructor() {
-    
-
   }
 
   setPosition(x, z) {
-    this.model.position.set(x, 6, z);
+    this.model.position.set(x, 5, z);
+    this.animate();
+  }
+
+  updatePosition(x, z){
+    this.move = new TWEEN.Tween(this.model.position).to({ x: x, z: z }, 500).start();
+    this.move.easing(TWEEN.Easing.Quintic.Out);
   }
 
   draw() {
@@ -22,19 +26,22 @@ export default class Player {
     this.model = this.uniform;
     this.model.scale.set(0.12, 0.12, 0.12);
     this.model.rotation.set(0, 10.9, 0);
+  }
+
+  animate(){
     this.tweenY = new TWEEN.Tween(this.model.position).to({y: 10}, 1000).start();
     this.tweenY.repeat(Infinity); 
     this.tweenY.yoyo(true);
   }
 
-  // setDesign(index) {
-  //   this.currentDesignIndex = index;
-  // }
+  setDesign(index) {
+    this.currentDesignIndex = index;
+  }
 
   setUniform() {
     console.log(this.position);
     if (this.position === PositionConstants.GK) {
-      // switch(this.design) {
+      // switch(this.currentDesignIndex ) {
       //   case 0: return IMG.K01; break; 
       //   case 1: return IMG.K02; break; 
       //   case 2: return IMG.K03; break; 

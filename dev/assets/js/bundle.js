@@ -47415,6 +47415,10 @@ var _SceneStadium = __webpack_require__(20);
 
 var _SceneStadium2 = _interopRequireDefault(_SceneStadium);
 
+var _tween = __webpack_require__(24);
+
+var _tween2 = _interopRequireDefault(_tween);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -47481,7 +47485,7 @@ var SceneManager = function () {
         this.playerList[i].xAxis = _FormationConstants2.default[index][i][0];
         this.playerList[i].zAxis = _FormationConstants2.default[index][i][1];
         this.playerList[i].position = _FormationConstants2.default[index][i][2];
-        this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
+        this.playerList[i].updatePosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
       }
     }
   }, {
@@ -47508,6 +47512,7 @@ var SceneManager = function () {
       var _this = this;
 
       this.renderer.render(this.sceneToRender, this.camera);
+      _tween2.default.update();
       requestAnimationFrame(function () {
         _this.renderLoop();
       });
@@ -47728,7 +47733,7 @@ var _Loader = __webpack_require__(1);
 
 var _tween = __webpack_require__(24);
 
-var TWEEN = _interopRequireWildcard(_tween);
+var _tween2 = _interopRequireDefault(_tween);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47744,7 +47749,14 @@ var Player = function () {
   _createClass(Player, [{
     key: 'setPosition',
     value: function setPosition(x, z) {
-      this.model.position.set(x, 6, z);
+      this.model.position.set(x, 5, z);
+      this.animate();
+    }
+  }, {
+    key: 'updatePosition',
+    value: function updatePosition(x, z) {
+      this.move = new _tween2.default.Tween(this.model.position).to({ x: x, z: z }, 500).start();
+      this.move.easing(_tween2.default.Easing.Quintic.Out);
     }
   }, {
     key: 'draw',
@@ -47753,21 +47765,25 @@ var Player = function () {
       this.model = this.uniform;
       this.model.scale.set(0.12, 0.12, 0.12);
       this.model.rotation.set(0, 10.9, 0);
-      this.tweenY = new TWEEN.Tween(this.model.position).to({ y: 10 }, 1000).start();
+    }
+  }, {
+    key: 'animate',
+    value: function animate() {
+      this.tweenY = new _tween2.default.Tween(this.model.position).to({ y: 10 }, 1000).start();
       this.tweenY.repeat(Infinity);
       this.tweenY.yoyo(true);
     }
-
-    // setDesign(index) {
-    //   this.currentDesignIndex = index;
-    // }
-
+  }, {
+    key: 'setDesign',
+    value: function setDesign(index) {
+      this.currentDesignIndex = index;
+    }
   }, {
     key: 'setUniform',
     value: function setUniform() {
       console.log(this.position);
       if (this.position === PositionConstants.GK) {
-        // switch(this.design) {
+        // switch(this.currentDesignIndex ) {
         //   case 0: return IMG.K01; break; 
         //   case 1: return IMG.K02; break; 
         //   case 2: return IMG.K03; break; 
@@ -51320,6 +51336,7 @@ var SceneGalaxy = function () {
     this.initBackground();
     this.initLights();
     this.initModels();
+    this.initStart();
   }
 
   _createClass(SceneGalaxy, [{
@@ -51346,6 +51363,32 @@ var SceneGalaxy = function () {
       this.background.scale.set(-1, 1, 1);
       this.background.position.set(0, 0, 0);
       this.scene.add(this.background);
+    }
+  }, {
+    key: 'initStart',
+    value: function initStart() {
+      var FLAKE_COUNT = 3000;
+      var FLAKE_GEOMETRY = new THREE.SphereGeometry(0.1);
+      var FLAKE_MATERIAL = new THREE.MeshPhongMaterial({ color: 0xffffff });
+      this.snow = new THREE.Group();
+
+      for (var i = 0; i < FLAKE_COUNT; i++) {
+        var flakeMesh = new THREE.Mesh(FLAKE_GEOMETRY, FLAKE_MATERIAL);
+        flakeMesh.position.set((Math.random() - 0.5) * 300, (Math.random() - 0.5) * 300, (Math.random() - 0.5) * 300);
+        this.snow.add(flakeMesh);
+      }
+      this.scene.add(this.snow);
+      this.animateStars();
+    }
+  }, {
+    key: 'animateStars',
+    value: function animateStars() {
+      var _this = this;
+
+      requestAnimationFrame(function () {
+        _this.snow.rotation.y -= 0.0002;
+        _this.animateStars();
+      });
     }
   }, {
     key: 'initModels',

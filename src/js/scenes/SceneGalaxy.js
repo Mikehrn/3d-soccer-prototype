@@ -11,6 +11,7 @@ export default class SceneGalaxy {
     this.initBackground();
     this.initLights();
     this.initModels();
+    this.initStart();
   }
 
   initLights() {
@@ -25,7 +26,7 @@ export default class SceneGalaxy {
   }
 
   initBackground() {
-    const SPHERE_GEOMETRY = new THREE.SphereGeometry( 500, 60, 40 )
+    const SPHERE_GEOMETRY = new THREE.SphereGeometry(500, 60, 40)
     const SPHERE_MATERIAL = new THREE.MeshBasicMaterial({
       map: TEXTURE_GALAXY.BACKGROUND,
       side: THREE.DoubleSide
@@ -35,6 +36,33 @@ export default class SceneGalaxy {
     this.background.position.set( 0, 0, 0 )
     this.scene.add(this.background);
   }
+
+  initStart() {
+    const FLAKE_COUNT = 3000;
+    const FLAKE_GEOMETRY = new THREE.SphereGeometry(0.1);
+    const FLAKE_MATERIAL = new THREE.MeshPhongMaterial({ color: 0xffffff });
+    this.snow = new THREE.Group();
+
+    for (let i = 0; i < FLAKE_COUNT; i++) {
+      let flakeMesh = new THREE.Mesh(FLAKE_GEOMETRY, FLAKE_MATERIAL);
+      flakeMesh.position.set(
+        (Math.random() - 0.5) * 300,
+        (Math.random() - 0.5) * 300,
+        (Math.random() - 0.5) * 300
+      );
+      this.snow.add(flakeMesh);
+    }
+    this.scene.add(this.snow);
+    this.animateStars();
+  }
+
+  animateStars() {
+    requestAnimationFrame(() => { 
+      this.snow.rotation.y -= 0.0002;
+      this.animateStars();
+    });
+  }
+
 
   initModels() {
     this.modelField();
