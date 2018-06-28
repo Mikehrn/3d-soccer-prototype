@@ -47475,7 +47475,14 @@ var SceneManager = function () {
         this.playerList[i].index = i;
         this.playerList[i].draw();
         this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
-        this.sceneStreet.scene.add(this.playerList[i].model);
+      }
+      this.setPlayers();
+    }
+  }, {
+    key: 'setPlayers',
+    value: function setPlayers() {
+      for (var i = 0; i <= 10; i++) {
+        this.sceneToRender.add(this.playerList[i].model);
       }
     }
   }, {
@@ -47486,6 +47493,7 @@ var SceneManager = function () {
         this.playerList[i].zAxis = _FormationConstants2.default[index][i][1];
         this.playerList[i].position = _FormationConstants2.default[index][i][2];
         this.playerList[i].updatePosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
+        this.sceneToRender.add(this.playerList[i].model);
       }
     }
   }, {
@@ -47493,6 +47501,7 @@ var SceneManager = function () {
     value: function setSceneIndex(index) {
       this.currentSceneIndex = index;
       this.setCurrentSceneName();
+      this.setPlayers();
     }
   }, {
     key: 'setCurrentSceneName',

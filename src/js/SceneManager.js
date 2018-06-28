@@ -56,22 +56,30 @@ export default class SceneManager {
       this.playerList[i].index = i;
       this.playerList[i].draw();
       this.playerList[i].setPosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
-      this.sceneStreet.scene.add(this.playerList[i].model);
     }
+    this.setPlayers();
   }
 
+  setPlayers() {
+    for (let i = 0; i <= 10; i++) {
+      this.sceneToRender.add(this.playerList[i].model);
+    }
+  }
+  
   setFormation(index) {
     for (let i = 0; i <= 10; i++) {
       this.playerList[i].xAxis = FormationConstants[index][i][0];
       this.playerList[i].zAxis = FormationConstants[index][i][1];
       this.playerList[i].position = FormationConstants[index][i][2];
       this.playerList[i].updatePosition(this.playerList[i].xAxis, this.playerList[i].zAxis);
+      this.sceneToRender.add(this.playerList[i].model);
     }
   }
 
   setSceneIndex(index) { 
     this.currentSceneIndex = index;
     this.setCurrentSceneName();
+    this.setPlayers();
   }
 
   setCurrentSceneName() {
