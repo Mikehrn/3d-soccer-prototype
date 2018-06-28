@@ -1,0 +1,285 @@
+.clearfix {
+  clear: both;
+}
+
+.menu {
+  position: relative;
+  margin-top: -2px;
+  width: 100%;
+  z-index: 1;
+  height: 330px;
+}
+
+.tabs {
+  // box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.1);
+  background-color: #2a2e2f;
+
+  &__tab {
+    transition: background-color 0.25s;
+    width: calc(100% / 3 - 5px);
+    display: inline-block;
+    text-align: center;
+    color: #a6a6a6;
+    font-size: 14px;
+    padding: 20px 0;    
+
+    &.active {
+      background-color: #3a3f40;
+      color: #fff;
+
+      span {
+        display: inline-block;
+        position: relative;
+      }
+    }
+  }
+}
+
+.button {
+  background-color: #0e93e6;
+  margin: 50px auto 0;
+  text-align: center;
+  line-height: 44px;
+  font-size: 14px;
+  display: block;
+  color: #fff;
+  height: 44px;
+  width: 50%;
+}
+
+.label {
+  text-align: left;
+  margin: 0 0 20px;
+  font-size: 14px;
+  display: block;
+  color: #fff;
+  width: 100%;
+}
+
+.input {
+  font-weight: normal;
+  font-size: 14px;
+  padding: 0 20px;
+  height: 44px;
+  border: none;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.dropdown {
+  line-height: 44px;
+  font-weight: bold;
+  border-radius: 0;
+  font-size: 12px;
+  color: #fff;
+  border: none;
+}
+
+.options {
+  background-color: #3a3f40;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+
+  &.menu-1-open {
+    .player-info {
+      transform: translate(0,0,0)
+    }
+    .formation-info {
+      transform: translate(100%,0,0)
+    }
+    .design-options {
+      transform: translate(200%,0,0)
+    }
+  }
+
+  &.menu-2-open {
+    .player-info {
+      transform: translate(-100%,0,0)
+    }
+    .formation-info {
+      transform: translate(0,0,0)
+    }
+    .design-options {
+      transform: translate(100%,0,0)
+    }
+  }
+
+  &.menu-3-open {
+    .player-info {
+      transform: translate(-200%,0,0)
+    }
+    .formation-info {
+      transform: translate(-100%,0,0)
+    }
+    .design-options {
+      transform: translate(0,0,0)
+    }
+  }
+
+  &__tab {
+    width: calc(100% - 40px);
+    padding: 25px 20px;
+    position: absolute;
+    height: 100%; 
+    z-index: 3;
+    top: 0;
+  }
+}
+
+.player-info {
+  transition: transform 0.5s ease-out;
+
+  &__dropdown {
+    background-color: #0e93e6;
+    width: calc(28% - 30px);
+    padding: 0 0 0 30px;
+    height: 44px;
+    float: left;
+
+    &:after {
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid #fff;
+      position: absolute;
+      content: "";
+      left: 65px;
+      top: 19px;
+    }
+
+    &__wrapper {
+      position: relative;
+    }
+
+    &__input {  
+      background-color: #0e93e6;
+      width: calc(100% - 14px);
+      position: absolute;
+      padding: 0 7px;
+      height: 44px;
+      opacity: 0;
+      top: 44px;
+
+      &__option {
+        text-align: center;
+        line-height: 44px;
+        font-size: 12px;
+        color: #fff;
+        float: left;
+        width: 20%;
+
+        &.active { 
+          background-color: #3db4ff;
+        }
+      }
+
+      &.show {
+        opacity: 1;
+      }
+    }
+
+    &.show {
+      &:after {
+        border-bottom: 6px solid #fff;
+        border-top: none;
+      }
+    }
+  }
+
+  &__input {
+    width: calc(72% - 40px);
+    height: 44px;
+    float: left;
+  }
+}
+
+.formation-info {
+  transition: transform 0.5s ease-out;
+}
+
+.design-options {
+  transition: transform 0.5s ease-out;
+}
+
+.formation-list, .design-list, .country-list {
+  &__option {
+    background-color: #575f60;
+    width: calc(100% / 3 - 10px);
+    text-align: center;
+    margin: 0 5px 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    display: table;
+    color: #fff;
+    height: 80px;
+    float: left;
+
+    p {
+      vertical-align: middle;
+      display: table-cell;
+    }
+  }
+}
+
+.formation-list {
+  &__option {
+    &.active {
+      background-color: #0e93e6;
+    }
+  }
+}
+
+.design-list, .country-list {
+  &__option {
+    background-position: center right;
+    background-size: cover;
+    box-sizing: border-box;
+
+    &.active {
+      border: 2px solid #fff;
+    }
+
+    p {
+      text-shadow: 1px 1px 3px rgba(0,0,0, 0.8);
+    }
+  }
+}
+
+.country-list {
+  &__option {
+    background-position: center;
+  }
+}
+
+.label--country { 
+  display: inline-block;
+  padding-top: 15px;
+}
+
+#design-button-1 {
+  background-image: url('../img/design/1/background_01.jpg');
+}
+
+#design-button-2 {
+  background-image: url('../img/design/2/background_02.jpg');
+}
+
+#design-button-3 {
+  background-image: url('../img/design/3/background_03.jpg');
+}
+
+#country-button-1 {
+  background-image: url('../img/ui/flag-japan.jpg');
+}
+
+#country-button-2 {
+  background-image: url('../img/ui/flag-france.jpg');
+}
+
+#country-button-3 {
+  background-image: url('../img/ui/flag-belgium.jpg');
+}

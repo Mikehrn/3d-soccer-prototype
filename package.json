@@ -1,0 +1,68 @@
+{
+  "name": "Twitter_soccer_formation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf prod/*",
+    "start": "yarn run dev & yarn run browsersync",
+    "dev": "NODE_ENV=development webpack --progress --colors --watch --config ./webpack.config.babel.js",
+    "browsersync": "browser-sync start --config ./config/browsersync-config.js --files='./dev/**/*.html,./dev/**/*.css,./dev/**/*.js'",
+    "build": "yarn run clean & yarn run prod",
+    "prod": "NODE_ENV=production webpack --display-error-details --config ./webpack.config.babel.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://birdmaninc.visualstudio.com/_git/NHK_WorldCup2018"
+  },
+  "author": "Mike Tasset",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^8.2.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-loose": "^8.0.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
+    "ejs-compiled-loader": "^1.1.0",
+    "ejs-loader": "^0.3.1",
+    "events": "^2.0.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "keymirror": "^0.1.1",
+    "node-sass": "^4.8.3",
+    "path": "^0.12.7",
+    "postcss-loader": "^2.1.3",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "three": "^0.93.0",
+    "three-gltf-loader": "^1.93.0",
+    "three-orbit-controls": "^82.1.0",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "^3.10.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^2.0.14"
+  },
+  "babel": {
+    "presets": [
+      "stage-3",
+      "es2015"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
+  }
+}

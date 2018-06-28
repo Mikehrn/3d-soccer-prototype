@@ -1,0 +1,62 @@
+body {
+  overflow: hidden; 
+  height: 100%;
+  width: 100%;
+}
+
+canvas {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+a {
+  text-decoration: none;
+}
+
+.formation-1, .formation-2, .formation-3, .scene__option {
+  background-color: $white;
+  padding: 15px 20px;
+  position: absolute;
+  z-index: 2000;
+  color: $black;
+  font-size: 14px;
+  border-radius: 4px;
+  width: 90px;
+  text-align: center;
+
+  &.active {
+    background-color: #1a57ac;
+    color: #ffffff;
+  }
+}
+
+.formation-1 {
+  bottom: 20px; 
+  left: 20px;
+}
+
+.formation-2 {
+  bottom: 20px; 
+  left: 165px;
+}
+
+.formation-3 {
+  bottom: 20px; 
+  left: 310px;
+}
+
+#scene1 {
+  bottom: 80px; 
+  left: 20px;
+}
+
+#scene2 {
+  bottom: 80px; 
+  left: 165px;
+}
+
+#scene3 {
+  bottom: 80px; 
+  left: 310px;
+}
