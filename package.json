@@ -1,5 +1,5 @@
 {
-  "name": "Twitter_soccer_formation",
+  "name": "3D_soccer_formation",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://birdmaninc.visualstudio.com/_git/NHK_WorldCup2018"
+    "url": ""
   },
   "author": "Mike Tasset",
   "license": "ISC",
